@@ -97,6 +97,7 @@
 }
 .control:checked+.side-menu label{
     background-color:white;
+    transition: 1s;
 }
 
 .control:checked+.side-menu label.hamburger::before{
