@@ -66,10 +66,12 @@
     height:40px;
     padding:10px;
     cursor: pointer;
+
 }
 
-.rightlist:hover {
+.rightlist:hover{
     background-color: rgba(200,10,10,0.5);
+
 }
 #side-menu-switch{
     position: absolute;
