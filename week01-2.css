@@ -68,7 +68,7 @@
     cursor: pointer;
 }
 
-.rlist:hover {
+.rightlist:hover {
     background-color: rgba(200,10,10,0.5);
 }
 #side-menu-switch{
