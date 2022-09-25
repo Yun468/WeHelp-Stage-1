@@ -46,15 +46,13 @@
     width:50%;
     height:100vh;
     background-color:white;
-    position: absolute;
     position: fixed;
     top:0;
     left:100%;
     transition: 1s;
 }
-.control:checked+.side-menu{
+.control:checked~.side-menu{
     left:50%;
-    position:fixed;
     box-shadow: -5px 0px 10px #8E8E8E;
 
 }
@@ -76,14 +74,15 @@
     position: absolute;
     opacity: 0;
 }
+
 .side-menu-back{
     width:50%;
     height:100%;
-    position: absolute;
-    transform: translateX(-100%);
+    position:fixed;
+    right:100%;
 }
 .control:checked~.side-menu-back{
-    transform: translateX(0);
+    right:50%;
     position:fixed;
 }
 
