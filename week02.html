@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width",initial-scale=1.0/>
+        <!--initial-scale=設定畫面初始比例縮放 ; width=設定畫面寬度,device-width=與裝置同寬-->
+        <meta charset="utf-8"/>
+        <title>My Website</title>
+    </head>
+    <body>
+        <script>
+            /*第一題--------------------------*/
+            function calculate(min, max, step){
+                if(max<min){
+                    console.log("最大值必須大於最小值,且setp須為正整數");                    
+                    }else if(max%1!=0){
+                    console.log("最大值必須大於最小值,且setp須為正整數");
+                    }else if(step<=0){
+                    console.log("最大值必須大於最小值,且setp須為正整數");
+                    }else{
+                        let answer1=0;
+                            for(answer1;min<=max;min=min+step){
+                                answer1=answer1+min;
+                            };
+                            console.log(answer1)
+                }                      
+            }
+         
+            calculate(1, 3, 1); // 你的程式要能夠計算 1+2+3，最後印出 6
+            calculate(4, 8, 2); // 你的程式要能夠計算 4+6+8，最後印出 18
+            calculate(-1, 2, 2); // 你的程式要能夠計算 -1+1，最後印出 0
+
+
+
+            /*第二題--------------------------*/
+            function avg(data){
+                // console.log(data);  // data是一個JSON
+                // console.log(data.employees[0].name);
+                // console.log(data.employees.length)
+                let a=0;
+                let b=0;
+                let salary=data.employees[b].salary;
+                let manager=data.employees[b].manager;
+                while(b<data.employees.length){
+                    if(manager==false){
+                        a=a+salary
+                    }else{
+                        a=a+0
+                    }
+                    b=b+1
+                };// a=非員工薪水總和
+
+                let c=0;
+                let d=0;
+                while(d < data.employees.length){
+                    if(data.employees[d].manager == false){
+                        c=c+1;
+                        d=d+1;
+                    }else{
+                        c=c+0;
+                        d=d+1;
+                    };
+                };// c=非員工人數
+                let answer2=a/c;
+                console.log(answer2)
+            };
+                
+            
+            avg({
+                "employees":[
+                {
+                "name":"John",
+                "salary":30000,
+                "manager":false
+                },
+                {
+                "name":"Bob",
+                "salary":60000,
+                "manager":true
+                },
+                {
+                "name":"Jenny",
+                "salary":50000,
+                "manager":false
+                },
+                {
+                "name":"Tony",
+                "salary":40000,
+                "manager":false
+                }
+            ]}); // 呼叫 avg 函式
+
+            /*第三題--------------------------*/
+            function func(a){
+                function f(b,c){
+                    return console.log(a+(b*c))
+                };
+                return f        
+            }
+
+
+            
+            func(2)(3, 4); // 你補完的函式能印出 2+(3*4) 的結果 14
+            func(5)(1, -5); // 你補完的函式能印出 5+(1*-5) 的結果 0
+            func(-3)(2, 9); // 你補完的函式能印出 -3+(2*9) 的結果 15
+            // 一般形式為 func(a)(b, c) 要印出 a+(b*c) 的結果
+
+            /*第四題--------------------------*/
+            function maxProduct(nums){
+                let n=1;
+                let newnums=[];        
+                while(n<nums.length){
+                    for (i=0; i<nums.length-n;i++){
+                        newnums.push(nums[i]*nums[i+n]) ;                            
+                    };
+                    if(n+1<=nums.length){
+                        n=n+1
+                    }else{
+                        break
+                    }
+
+                };
+
+                let max=newnums[0];                
+                for(x=0;x<newnums.length;x++){
+                    if(newnums[x]>=max){
+                        max=newnums[x]
+                    };                    
+                };
+                console.log(max)
+            }
+
+            maxProduct([5, 20, 2, 6]) // 得到 120
+            maxProduct([10, -20, 0, 3]) // 得到 30
+            maxProduct([10, -20, 0, -3]) // 得到 60
+            maxProduct([-1, 2]) // 得到 -2
+            maxProduct([-1, 0, 2]) // 得到 0 或 -0
+            maxProduct([5, -1, -2, 0]) // 得到 2
+            maxProduct([-5, -2]) // 得到 10
+            
+
+            /*第五題--------------------------*/
+            function twoSum(nums, target){
+                let a=1;
+                let b=0;
+                let n=3;
+                let x=null;
+                while(b<nums.length-1){
+
+                    if(x!=null){
+                        break
+                    };
+                    while(a<nums.length){
+                        if(nums[b]==target-nums[a]&& nums[b]!=nums[a]){
+                            x=(nums[b],nums[a])
+                            console.log(b,a);
+                            break            
+                        };
+                    a=a+1                    
+                    };
+                //a=4=nums.length, b=0
+                    b=b+1;
+                    a=a-n;
+                    n=n-1;
+                }
+            };      
+            twoSum([2, 11, 7, 15], 9)
+            // let result=twoSum([2, 11, 7, 15], 9);
+            // console.log(result); // show [0, 2] because nums[0]+nums[2] is 9
+           
+           
+           
+           
+            // /*第六題( Optional )--------------------------*/
+            // function maxZeros(nums){
+            // // 請用你的程式補完這個函式的區塊
+            // }
+            // maxZeros([0, 1, 0, 0]); // 得到 2
+            // maxZeros([1, 0, 0, 0, 0, 1, 0, 1, 0, 0]); // 得到 4
+            // maxZeros([1, 1, 1, 1, 1]); // 得到 0
+            // maxZeros([0, 0, 0, 1, 1]) // 得到 3
+        </script>
+
+
+
+    </body>
+   
+</html>
