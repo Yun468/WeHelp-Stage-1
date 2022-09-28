@@ -80,9 +80,9 @@ avg({
 
 # /*第三題--------------------------*/
 def func(a):
-    def func(b,c):
+    def func2(b,c):
         return print( a+(b*c))
-    return func       
+    return func2      
 
 
 func(2)(3, 4) # 你補完的函式能印出 2+(3*4) 的結果 14
