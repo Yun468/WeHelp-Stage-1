@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width",initial-scale=1.0/>
         <!--initial-scale=設定畫面初始比例縮放 ; width=設定畫面寬度,device-width=與裝置同寬-->
         <meta charset="utf-8"/>
-        <title>My Website</title>
+        <title>week-2</title>
     </head>
     <body>
         <script>
@@ -17,11 +17,11 @@
                     }else if(step<=0){
                     console.log("最大值必須大於最小值,且setp須為正整數");
                     }else{
-                        let answer1=0;
-                            for(answer1;min<=max;min=min+step){
-                                answer1=answer1+min;
+                        let result=0;
+                            for(result;min<=max;min=min+step){
+                                result=result+min;
                             };
-                            console.log(answer1)
+                            console.log(result)
                 }                      
             }
          
@@ -30,64 +30,64 @@
             calculate(-1, 2, 2); // 你的程式要能夠計算 -1+1，最後印出 0
 
 
-
             /*第二題--------------------------*/
             function avg(data){
                 // console.log(data);  // data是一個JSON
                 // console.log(data.employees[0].name);
                 // console.log(data.employees.length)
-                let a=0;
-                let b=0;
-                let salary=data.employees[b].salary;
-                let manager=data.employees[b].manager;
-                while(b<data.employees.length){
+                let sum=0;
+                let number_1=0;
+                let salary=data.employees[number_1].salary;
+                let manager=data.employees[number_1].manager;
+                while(number_1<data.employees.length){
                     if(manager==false){
-                        a=a+salary
+                        sum=sum+salary
                     }else{
-                        a=a+0
+                        sum=sum+0
                     }
-                    b=b+1
-                };// a=非員工薪水總和
+                    number_1=number_1+1
+                };// sum=非員工薪水總和
 
-                let c=0;
-                let d=0;
-                while(d < data.employees.length){
-                    if(data.employees[d].manager == false){
-                        c=c+1;
-                        d=d+1;
+                let nonemployee=0;
+                let number_2=0;
+                while(number_2 < data.employees.length){
+                    if(data.employees[number_2].manager == false){
+                        nonemployee=nonemployee+1;
+                        number_2=number_2+1;
                     }else{
-                        c=c+0;
-                        d=d+1;
+                        nonemployee=nonemployee+0;
+                        number_2=number_2+1;
                     };
-                };// c=非員工人數
-                let answer2=a/c;
-                console.log(answer2)
+                };// nonemployee=非員工人數
+                let average=sum/nonemployee;
+                console.log(average)
             };
                 
             
             avg({
-                "employees":[
-                {
-                "name":"John",
-                "salary":30000,
-                "manager":false
-                },
-                {
-                "name":"Bob",
-                "salary":60000,
-                "manager":true
-                },
-                {
-                "name":"Jenny",
-                "salary":50000,
-                "manager":false
-                },
-                {
-                "name":"Tony",
-                "salary":40000,
-                "manager":false
-                }
-            ]}); // 呼叫 avg 函式
+                    "employees":[
+                        {
+                        "name":"John",
+                        "salary":30000,
+                        "manager":false
+                        },
+                        {
+                        "name":"Bob",
+                        "salary":60000,
+                        "manager":true
+                        },
+                        {
+                        "name":"Jenny",
+                        "salary":50000,
+                        "manager":false
+                        },
+                        {
+                        "name":"Tony",
+                        "salary":40000,
+                        "manager":false
+                        }
+                    ]
+            }); // 呼叫 avg 函式
 
             /*第三題--------------------------*/
             function func(a){
@@ -106,14 +106,14 @@
 
             /*第四題--------------------------*/
             function maxProduct(nums){
-                let n=1;
+                let a=1;
                 let newnums=[];        
-                while(n<nums.length){
-                    for (i=0; i<nums.length-n;i++){
-                        newnums.push(nums[i]*nums[i+n]) ;                            
+                while(a<nums.length){
+                    for (number=0; number<nums.length-a;number++){
+                        newnums.push(nums[number]*nums[number+a]) ;                            
                     };
-                    if(n+1<=nums.length){
-                        n=n+1
+                    if(a+1<=nums.length){
+                        a=a+1
                     }else{
                         break
                     }
@@ -121,9 +121,9 @@
                 };
 
                 let max=newnums[0];                
-                for(x=0;x<newnums.length;x++){
-                    if(newnums[x]>=max){
-                        max=newnums[x]
+                for(number=0;number<newnums.length;number++){
+                    if(newnums[number]>=max){
+                        max=newnums[number]
                     };                    
                 };
                 console.log(max)
@@ -140,44 +140,44 @@
 
             /*第五題--------------------------*/
             function twoSum(nums, target){
-                let a=1;
-                let b=0;
-                let n=3;
-                let x=null;
-                while(b<nums.length-1){
+                let index1=0;
+                let index2=1;
+                let n=nums.length-1;
+                let index=null;
+                while(index1<nums.length-1){
 
-                    if(x!=null){
+                    if(index!=null){
                         break
                     };
-                    while(a<nums.length){
-                        if(nums[b]==target-nums[a]&& nums[b]!=nums[a]){
-                            x=(nums[b],nums[a])
-                            console.log(b,a);
+                    while(index2<nums.length){
+                        if(nums[index1]==target-nums[index2]&& nums[index1]!=nums[index2]){
+                            index=(nums[index1],nums[index2]);
+                            return ([index1,index2]);
                             break            
                         };
-                    a=a+1                    
+                        index2=index2+1                    
                     };
-                //a=4=nums.length, b=0
-                    b=b+1;
-                    a=a-n;
+                //index1=0
+                    index1=index1+1;
+                    index2=index2-n;
                     n=n-1;
                 }
             };      
             twoSum([2, 11, 7, 15], 9)
-            // let result=twoSum([2, 11, 7, 15], 9);
-            // console.log(result); // show [0, 2] because nums[0]+nums[2] is 9
+            let result=twoSum([2, 11, 7, 15], 9);
+            console.log(result); // show [0, 2] because nums[0]+nums[2] is 9
            
            
            
            
-            // /*第六題( Optional )--------------------------*/
-            // function maxZeros(nums){
-            // // 請用你的程式補完這個函式的區塊
-            // }
-            // maxZeros([0, 1, 0, 0]); // 得到 2
-            // maxZeros([1, 0, 0, 0, 0, 1, 0, 1, 0, 0]); // 得到 4
-            // maxZeros([1, 1, 1, 1, 1]); // 得到 0
-            // maxZeros([0, 0, 0, 1, 1]) // 得到 3
+            /*第六題( Optional )--------------------------*/
+            function maxZeros(nums){
+            // 請用你的程式補完這個函式的區塊
+            }
+            maxZeros([0, 1, 0, 0]); // 得到 2
+            maxZeros([1, 0, 0, 0, 0, 1, 0, 1, 0, 0]); // 得到 4
+            maxZeros([1, 1, 1, 1, 1]); // 得到 0
+            maxZeros([0, 0, 0, 1, 1]) // 得到 3
         </script>
 
 
