@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width",initial-scale=1.0/>
+        <!--initial-scale=設定畫面初始比例縮放 ; width=設定畫面寬度,device-width=與裝置同寬-->
+        <meta charset="utf-8"/>
+        <title>My Website week03</title>
+        <link rel="stylesheet" type="text/css" href="week03-3.css"/>
+        <!--1.<link> = 在head 區域內的標籤，用來控制網頁與外部資源的關係
+            2.rel = relationship縮寫,定義連結的檔案和HTML文檔之間的關係
+            3.stylesheet = rel的屬性之一。定義一個外部載入的樣式表
+            4.href = 鍵連的目標,在<a>中指超連結的目標url
+        -->
+    </head>
+    <body class="body">        
+        <div class="frame">
+            <div class="left">My Website</div>
+            <div class="right">
+                <div class="Item">item 1</div>
+                <div class="Item">item 2</div>
+                <div class="Item">item 3</div>
+                <div class="Item">item 4</div>
+            </div> 
+            <!-- 漢堡 buttom -->
+            <label for="side-menu-switch" class="hamburger">
+                <img class="mobile" src="https://cdn2.iconfinder.com/data/icons/picons-basic-2/57/basic2-065_bullets_list-256.png"/>
+            </label>
+        </div>
+        <div class="welcome">
+            <div class="wel">Welcome to MyHome</div>
+        </div>
+        <!-- 下方開始為主內容 -->
+        <div class="content">
+            <div class="list">
+                <div class="content2">    
+                    <div class=picture1>
+                    
+                    </div>
+                    <div class="text">
+                        Picture1
+                    </div>       
+                </div>
+                <div  class="content2">
+                    <div class=picture1>
+                    
+                    </div>
+                    <div class="text">
+                        Picture2
+                    </div> 
+                </div>
+            </div>         
+            <!-- 下方是圖片 -->
+            <div class="Bob">
+                <div  class="ob">
+                    <div class="obin">
+                        <div class="zeromargin">
+                            <div class="title">
+                                
+                            </div>
+                        </div>                       
+                    </div>     
+                </div>                   
+                <div  class="ob">
+                    <div class="obin">
+                        <div class="zeromargin">
+                            <div class="title">
+                                
+                            </div>
+                        </div>                       
+                    </div>     
+                </div>  
+                <div  class="ob">
+                    <div class="obin">
+                        <div class="zeromargin">
+                            <div class="title">
+                                
+                            </div>
+                        </div>                       
+                    </div>     
+                </div>  
+                <div  class="ob">
+                    <div class="obin">
+                        <div class="zeromargin">
+                            <div class="title">
+                                
+                            </div>
+                        </div>                       
+                    </div>     
+                </div>  
+            </div>
+            <div class="Bob">
+                <div  class="ob">
+                    <div class="obin">
+                        <div class="zeromargin">
+                            <div class="title">
+                                
+                            </div>
+                        </div>                       
+                    </div>     
+                </div>                   
+                <div  class="ob">
+                    <div class="obin">
+                        <div class="zeromargin">
+                            <div class="title">
+                                
+                            </div>
+                        </div>                       
+                    </div>     
+                </div>  
+                <div  class="ob">
+                    <div class="obin">
+                        <div class="zeromargin">
+                            <div class="title">
+                                
+                            </div>
+                        </div>                       
+                    </div>     
+                </div>  
+                <div  class="ob">
+                    <div class="obin">
+                        <div class="zeromargin">
+                            <div class="title">
+                                
+                            </div>
+                        </div>                       
+                    </div>     
+                </div>  
+            </div>
+
+        </div>
+        <!-- 右側選單 -->
+        <input type="checkbox" name="" id="side-menu-switch" class="control">
+        
+        <div class="side-menu">
+            <div class="menulist">item1</div>
+            <div class="menulist">item2</div>
+            <div class="menulist">item3</div>
+            <div class="menulist">item4</div>  
+        </div>
+        <!-- 當漢堡被點擊後(打開選單)出現,置於畫面左側,點擊side-menu-back = 點擊漢堡 -->
+        <label for="side-menu-switch" class="side-menu-back">
+        </label>
+        
+        
+
+        <script>
+            //透過 AJAX fetch API 連線到遠端的網址,抓取資料
+            /*
+                fetch(網址).then(function(response){
+                    //Response 物件,代表伺服器的回應
+                })
+            */
+            let url="https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json"     //目標網址
+            fetch(url).then(function (response){         //連線網址,抓到一個Response 物件
+                        return response.json()           //解析資料並將JSON的格式詮釋成物件和陣列的組合,再取回資料
+            }).then(function (result){                   //再一個 .then ,主要的資料就會出現再result裡面(result=上面函式回傳值)
+                    //  console.log(result)              //此時的result 就是一個字陣列資料
+                    let items=result["result"]["results"];                  //設定變數items 代表目標資料庫
+                    let elem=document.querySelectorAll(".picture1");        //用document.querySelectorAll("class選擇器")選取每一個相同class的標籤
+                    let elem1=document.querySelectorAll(".text");
+                    for(i=0;i<2;i++){                                       //for 迴圈,依次在每個選到的標籤下寫入div、img、圖片網址
+                        let newDiv=document.createElement("div");           //document.createElement("標籤類型") :來創設標籤,並給該標籤一個名字代表他
+                        let imgSmall=document.createElement("img");
+                        elem[i].appendChild(newDiv);                        //appendChild(子標籤的名字)  :延續上方,將子標籤放入父標籤內部的最後位置
+                        newDiv.appendChild(imgSmall);
+                        let first_picture="http"+(items[i]["file"].split("http")[1]);       //定變數first_picture,令他代表每一項圖片網址
+                        imgSmall.src=first_picture;                                         //節點.src   :在節點(這裡是imgSmall)內寫入 src屬性
+                        imgSmall.className="image";                                         //節點.className="class名稱"  :在節點(這裡是imgSmall)內寫入 class屬性
+                        let stitle=items[i]["stitle"];
+                        elem1[i].textContent=stitle;
+                        
+                    };
+                    let elem2=document.querySelectorAll(".obin");                           //選擇所有class="obin"的標籤
+                    let elem3=document.querySelectorAll(".title");
+                    for(n=0;n<8;n++){                                
+                        let first_picture="http"+(items[n+2]["file"].split("http")[1]);       //第三張照片開始載入                 
+                        let url="url("+first_picture+")";                                     //因為elem2[n].style.backgroundImage="url=(圖片網址)"  →不能直接用first_picture【少了url()】
+                        elem2[n].style.backgroundImage=url;  
+                        let stitle=items[n+2]["stitle"];
+                        let newDiv=document.createElement("div");
+                        elem3[n].appendChild(newDiv);
+                        newDiv.style="margin:10px"
+                        newDiv.textContent=stitle;
+                        
+                        
+                    };
+                
+           
+                })
+        </script>
+    </body>
+</html>
+
