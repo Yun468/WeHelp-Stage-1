@@ -55,7 +55,7 @@ def signout():
     session["data_1"]=None
     session["data_2"]=None
     return redirect("/")
-    print(session["data_1"])
+
 
 
 #啟動網站伺服器,可透過 port 參數指定埠號
