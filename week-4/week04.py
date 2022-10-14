@@ -16,46 +16,39 @@ app.secret_key="any string but secret"
 #網站首頁
 @app.route("/")
 def index():
-  return render_template("week04.html")
+    return render_template("week04.html")
 
-#處理路徑的對應函式
+#輸入帳號密碼(處理/singin路徑的對應函式)
 @app.route("/singin",methods=["POST"])
 def account():
     account=request.form["account"]
     password=request.form["password"]
-    session["data_1"]=account
-    session["data_2"]=password
     if account=="test" and password=="test":
+        session["login"]="ok"
         return redirect("/member/")
+    elif account=="" or password=="":
+        return redirect("/error?message=請輸入帳號、密碼")
     else:
-        return redirect("/error")
+        return redirect("/error?message=帳號或密碼錯誤")
 
+#登入成功
 @app.route("/member/")
 def member():
-    if session["data_1"]!="test" or session["data_2"]!="test":
+    if session["login"]!="ok":
         return redirect("/")
     else:
         return render_template("answer.html",text_1="歡迎光臨，這是會員頁",text_2="恭喜您，成功登入系統")
+#登入失敗
 @app.route("/error")
 def error():
-    account=session["data_1"]
-    password=session["data_2"]
-    if  account=="":
-        text_2=request.args.get("message","請輸入帳號、密碼")
-        return render_template("answer.html",text_1="失敗頁",text_2=text_2)
-    elif password=="":
-        text_2=request.args.get("message","請輸入帳號、密碼")
-        return render_template("answer.html",text_1="失敗頁",text_2=text_2)
-    else:
-        text_2=request.args.get("message","帳號或密碼錯誤")
-        return render_template("answer.html",text_1="失敗頁",text_2=text_2)
+    message=request.args.get("message")
+    return render_template("answer.html",text_1="失敗頁",text_2=message)
 
+#登出
 @app.route("/signout")
 def signout():
-    session["data_1"]=None
-    session["data_2"]=None
+    session["login"]=None
     return redirect("/")
-
 
 
 #啟動網站伺服器,可透過 port 參數指定埠號
