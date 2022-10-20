@@ -1,6 +1,7 @@
 第三題
 
 INSERT INTO member(id,name,username,password,follower_count,time ) VALUES(1,'John','test','test',30,now());
+![1](https://user-images.githubusercontent.com/112928118/196859186-8ff73470-0b52-46d5-9a0a-35d0561442c9.png)
 
 INSERT INTO member(name,username,password,follower_count,time ) VALUES('Mary','aaaa','aaaa',30,now());
 
