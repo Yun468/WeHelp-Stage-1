@@ -1,15 +1,5 @@
-(member 設計)
-
-mysql> create table member(
-    -> id bigint PRIMARY KEY AUTO_INCREMENT,
-    -> name varchar(255) NOT NULL,
-    -> username varchar(255) NOT NULL,
-    -> password varchar(255) NOT NULL,
-    -> follower_count int unsigned DEFAULT 0,
-    -> time datetime NOT NULL,
-    -> );
-======================================
 第三題
+
 INSERT INTO member(id,name,username,password,follower_count,time ) VALUES(1,'John','test','test',30,now());
 
 INSERT INTO member(name,username,password,follower_count,time ) VALUES('Mary','aaaa','aaaa',30,now());
@@ -47,7 +37,7 @@ SELECT AVG(follower_count) FROM member;
 ======================================
 第五題(table設計)
 
-mysql>  CREATE TABLE message(
+mysql> CREATE TABLE message(
     -> id bigint PRIMARY KEY AUTO_INCREMENT,
     -> member_id bigint NOT NULL,
     -> content varchar(255) NOT NULL,
