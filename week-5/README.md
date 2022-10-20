@@ -36,6 +36,7 @@ mysql>SELECT*FROM member;
 
 
 ======================================
+
 第四題
 
 SELECT COUNT(*) FROM member;
@@ -48,6 +49,7 @@ SELECT AVG(follower_count) FROM member;
 ![11](https://user-images.githubusercontent.com/112928118/196860484-cb56462b-327c-4bb4-abdb-9dd868c54f98.png)
 
 ======================================
+
 第五題(table設計)
 
 mysql> CREATE TABLE message(
@@ -73,6 +75,7 @@ SELECT*FROM message;
 ![12](https://user-images.githubusercontent.com/112928118/196859766-52d080df-2608-46fa-bc8a-b9f509ac41b5.png)
 
 ===============================
+
 第五題(題目)
 
 SELECT member.username,message.content FROM member INNER JOIN message ON message.member_id=member.id;
