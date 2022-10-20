@@ -30,7 +30,7 @@ SELECT*FROM member WHERE username='test'AND password='test';
 
 mysql> UPDATE member SET name='test2' WHERE username='test';
 
-select*from member;
+mysql>SELECT*FROM member;
 ![8](https://user-images.githubusercontent.com/112928118/196860439-65ecb547-bd6e-4648-89d5-b8e452366076.png)
 
 
