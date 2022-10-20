@@ -29,6 +29,7 @@ SELECT*FROM member WHERE username='test'AND password='test';
 ![7](https://user-images.githubusercontent.com/112928118/196859705-392a38ce-6543-4fd5-9aa3-463406941e4f.png)
 
 mysql> UPDATE member SET name='test2' WHERE username='test';
+
 select*from member;
 ![8](https://user-images.githubusercontent.com/112928118/196860439-65ecb547-bd6e-4648-89d5-b8e452366076.png)
 
