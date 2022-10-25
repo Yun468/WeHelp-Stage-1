@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>week06</title>
+        <style>
+            .content{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            .index{
+                width:100%;
+                height: 100%;
+            }
+            .title{
+                height:20%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                font-size: 25px;
+                color: white;
+                background-color: cornflowerblue;
+                padding:5px;
+            }
+            .answer{
+                font-size: 25px;    
+                align-items: center;
+                border-width:0 0 1px 0;
+                border-style:solid; 
+            }
+            .enter{
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            .link{
+                display:none;
+                height: 50%;
+                text-align: center;
+                margin:20px 0 ;                            
+            }
+            .button{
+                border:0;
+                background-color:bisque;
+                font-size: 25px;
+                color: blue;
+            }
+            .button:hover{
+                color:red
+            }
+        </style>
+    </head>
+    <body style="margin:0;background-color:bisque">
+        <div class="content">
+            <div class="index">
+                <div class="title">
+                    {{text_1}}
+                </div>            
+                <div class="answer">
+                    <div class="enter">{{text_2}}</div>
+                    <form action="/signout">
+                        <div class="link" id="logout"><button class="button">登出系統</button></div>
+                    </form>
+                    <form action="/">
+                        <div class="link" id="backFirstPage"><button class="button">返回首頁</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            let logout=document.querySelector("#logout");
+            let backFirstPage=document.querySelector("#backFirstPage");
+            let path=window.location.pathname;
+            let member="/member"
+            let error="/error"
+            if(path==member){
+                logout.style="display:block"
+            }
+            if(path==error){
+                backFirstPage.style="display:block"
+            }
+
+                       
+        </script>
+
+    </body>
+</html>
