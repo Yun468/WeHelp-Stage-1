@@ -68,5 +68,6 @@
     font-size: 20px;
     display:none;
     border-width:1px 0 0 0;
-    border-style:solid;       
+    border-style:solid;
+    padding-top:20px;
 }
