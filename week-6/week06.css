@@ -63,7 +63,7 @@
     color:red
 }
 .content{
-    justify-content: center;
+    text-align: center;
     margin-top: 20px;
     font-size: 20px;
     display:none;
