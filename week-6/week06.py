@@ -20,14 +20,6 @@ mydb=myconnector.connect(
     database="week_06",
 ) 
 
-#透過python 操作 mysql
-#mycursor=mydb.cursor()                              #execute(" 欲操作的mysql 指令") 操作mysql 指令
-#透過python 創建 database
-    # mycursor.execute("CREATE DATABASE week_06")       #execute(" 欲執行的mysql 指令") 執行mysql 指令
-#透過python 創建 table
-#mycursor.execute("CREATE TABLE accounts (name VARCHAR(255),username VARCHAR(255) NOT NULL,password VARCHAR(255) NOT NULL)")
-
-
 #網站首頁
 @app.route("/")
 def index():
@@ -122,14 +114,3 @@ def message():
 #啟動網站伺服器,可透過 port 參數指定埠號
 #app.run()     →啟動網站伺服器
 app.run(port =3000)
-
-
-# mycursor = mydb.cursor()
-
-# mycursor.execute("SELECT name,password FROM accounts")
-
-# myresult = mycursor.fetchall()
-
-
-# for x in myresult:
-#   print(x[0],":",x[1])
