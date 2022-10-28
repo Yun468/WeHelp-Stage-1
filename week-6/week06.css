@@ -71,3 +71,7 @@
     border-style:solid;
     padding-top:20px;
 }
+.alert_{
+    padding: 10px 0 10px 20px;
+    background-color: rgb(255,150,10,0.3);
+}
