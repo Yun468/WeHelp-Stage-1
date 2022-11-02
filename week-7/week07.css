@@ -76,3 +76,10 @@
     padding: 10px 0 10px 20px;
     background-color: rgb(255,150,10,0.3);
 }
+.search{
+    border-width:0 0 1px 0;
+    border-style:solid;
+    width:100%;
+    text-align: center;
+    padding-bottom:10px; 
+}
