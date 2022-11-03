@@ -173,6 +173,6 @@ api.add_resource(return_user_data, "/api/member")                           #將
 
 #啟動網站伺服器,可透過 port 參數指定埠號
 #app.run()     →啟動網站伺服器
-app.run(port =3000,debug=True)
+app.run(port =3000)
 
 
