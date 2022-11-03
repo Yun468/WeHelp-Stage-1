@@ -17,7 +17,7 @@ mydb=mysql.connector.connect(
     user= "root",
     password="",
     charset="utf-8",
-    database="week_06",
+    database="week_06",             #延續上週的資料庫做使用
 ) 
 
 
