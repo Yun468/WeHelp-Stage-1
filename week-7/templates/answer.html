@@ -97,8 +97,8 @@
                     body: JSON.stringify({
                         "name":newName
                         }),
-                    credentials: "include",
-                    cache:"no-cache",
+                    credentials: "include",                         //cookie
+                    cache:"no-cache",                               //緩存
                     headers: new Headers({
                         "Content-Type":"application/json; charset=UTF-8",
                         }),
@@ -114,6 +114,9 @@
                             document.getElementById("update_result").innerHTML= "更新失敗"
                         } 
                     })
+                    .catch(
+                        document.getElementById("update_result").innerHTML= "連線後端失敗"
+                    )
             }
   
         </script>

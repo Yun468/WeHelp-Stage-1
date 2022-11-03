@@ -15,9 +15,9 @@ app.secret_key="any string but secret"
 mydb=mysql.connector.connect(
     host= "localhost",
     user= "root",
-    password="",
+    password="123456",
     charset="utf-8",
-    database="week_06",             #延續上週的資料庫做使用
+    database="week_06",
 ) 
 
 
@@ -47,6 +47,7 @@ def account():
             val = (name,username,password)
             mycursor.execute(sql,val)
             mydb.commit()
+            mycursor.close()
             return redirect("/")
 
 
@@ -64,6 +65,7 @@ def username():
         val=(username,password)
         mycursor.execute(sql,val)
         userexist = mycursor.fetchall()
+        mycursor.close()
         if userexist != None:
             session["login"]="ok"                           #userexist = [(id,name),]
             session["userinfo"]= userexist[0]               #userexist 是list / userexist[0] 是tuple / id 是int / name 是str
@@ -82,6 +84,7 @@ def member():
         mycursor=mydb.cursor()
         mycursor.execute ("SELECT accounts.username,messages.contents FROM accounts INNER JOIN messages ON accounts.id = messages.user_id")
         result=mycursor.fetchall()
+        mycursor.close()
         return render_template("answer.html",text_1="歡迎光臨，這是會員頁",text_2=name+"，歡迎登入系統",text_3=result)
 #登入失敗
 @app.route("/error")
@@ -109,6 +112,7 @@ def message():
         mycursor=mydb.cursor()
         mycursor.execute(sql,val)
         mydb.commit()
+        mycursor.close()
     return redirect("/member")
 
 
@@ -116,25 +120,31 @@ def message():
 class return_user_data(Resource):
     #查詢
     def get(self):
-        username=request.args.get("username")
+        username = request.args.get("username")
         try:
-            (session["login"]=="ok") == True                                #會員登入狀態
-            mycursor=mydb.cursor()
-            sql="SELECT id,name,username FROM accounts WHERE username=%s"
-            val=(username,)
-            mycursor.execute(sql,val)
-            user_data = mycursor.fetchall()
-            row_headers=[x[0] for x in mycursor.description] 
-            json_data=[]
-            for result in user_data:
-                json_data.append(dict(zip(row_headers,result)))             #zip()可以把多個list或tuple的相對應位置鏈起來，成為一個list。參考：https://ithelp.ithome.com.tw/articles/10218029
-            json_data={"data":json_data[0]}
+            if session["login"] !="ok":
+                return redirect("/")                             #會員登入狀態
+            
+            if username == "":                                   #不可查詢空帳號
+                json_data={"data":None}
+            else:
+                mycursor=mydb.cursor()
+                sql="SELECT id,name,username FROM accounts WHERE username=%s"
+                val=(username,)
+                mycursor.execute(sql,val)
+                user_data = mycursor.fetchall()
+                row_headers=[x[0] for x in mycursor.description] 
+                json_data=[]
+                for result in user_data:
+                    json_data.append(dict(zip(row_headers,result)))             #zip()可以把多個list或tuple的相對應位置鏈起來，成為一個list。參考：https://ithelp.ithome.com.tw/articles/10218029
+                json_data={"data":json_data[0]}
+                mycursor.close()
         except:
             json_data={"data":None}
         finally:
             return jsonify(json_data)
     
-    #修改
+    #修改    
     def patch(self):
         try:
             if session["login"] !="ok":
@@ -161,6 +171,7 @@ class return_user_data(Resource):
                 user = mycursor.fetchall()
                 session["userinfo"]= user[0]
                 result={"ok":True}
+                mycursor.close()
         except:
             result={"error":True}
         finally:
@@ -173,6 +184,6 @@ api.add_resource(return_user_data, "/api/member")                           #將
 
 #啟動網站伺服器,可透過 port 參數指定埠號
 #app.run()     →啟動網站伺服器
-app.run(port =3000)
+app.run(port =3000,debug=True)
 
 
