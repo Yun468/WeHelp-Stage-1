@@ -15,7 +15,7 @@ app.secret_key="any string but secret"
 mydb=mysql.connector.connect(
     host= "localhost",
     user= "root",
-    password="123456",
+    password="",
     charset="utf-8",
     database="week_06",
 ) 
@@ -184,6 +184,6 @@ api.add_resource(return_user_data, "/api/member")                           #將
 
 #啟動網站伺服器,可透過 port 參數指定埠號
 #app.run()     →啟動網站伺服器
-app.run(port =3000,debug=True)
+app.run(port =3000)
 
 
