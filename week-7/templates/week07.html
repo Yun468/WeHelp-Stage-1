@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width",initial-scale=1.0/>
+        <meta charset="utf-8"/>
+        <title>week07</title>
+        <link rel="stylesheet" type="text/css" href="https://yun468.github.io/week1/week-7/week07.css"/>
+    </head>
+    <body style="margin:0;background-color:bisque">
+        <div class="main">
+            <div class="title">
+                歡迎光臨，請註冊登入系統
+            </div>
+            <div class="index">
+                <form action="/singup" class="form" method="POST">
+                    <div class="first">註冊系統</div>
+                    <div class="ap">姓名<input type="text" name="name" /></div>
+                    <div class="ap">帳號<input type="text" name="username" /></div>
+                    <div class="ap">密碼<input type="password" name="password" /></div>
+                    <div class="ap"><button>註冊</button></div>
+                </form>
+            </div>
+            <div class="index" style="border-width:1px 0 0 0; border-style:solid">
+                <form action="/singin" class="form" method="POST">
+                    <div class="first">登入系統</div>
+                    <div class="ap">帳號<input type="text" name="username_singin" /></div>
+                    <div class="ap">密碼<input type="password" name="password_singin" /></div>
+                    <div class="ap"><button>登入</button></div>
+                </form>
+            </div>
+        </div>
+
+
+    </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width",initial-scale=1.0/>
+        <meta charset="utf-8"/>
+        <title>week07</title>
+        <link rel="stylesheet" type="text/css" href="https://yun468.github.io/week1/week-7/week07.css"/>
+    </head>
+    <body style="margin:0;background-color:bisque">
+        <div class="main">
+            <div class="index">
+                <div class="title">
+                    {{text_1}}
+                </div>
+                {% with alert = get_flashed_messages() %}
+                {% if alert %}
+                <div class="alert_">
+                    {% for item in alert %}
+                        <li><strong>{{ item }}</strong></li>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}          
+                <div class="answer">
+                    <div class="enter">{{text_2}}</div>
+                    <form action="/signout">
+                        <div class="link" id="logout"><button class="button">登出系統</button></div>
+                    </form>
+                    <form action="/">
+                        <div class="link" id="backFirstPage"><button class="button">返回首頁</button></div>
+                    </form>
+                </div>
+                <form id="search" class="form" method="GET">
+                    <div class="first">查詢會員姓名</div>
+                    <div class="ap">帳號<input type="text" id="search_username" placeholder="請輸入會員帳號" /><button type="button" onclick="searchUserName()" style="margin-left: 3px">送出</button></div>
+                    <div id ="search_result" class="search_update"></div>
+                </form>
+                <form id="update" class="form" >
+                    <div class="first">更新我的姓名</div>
+                    <div class="ap">姓名<input type="text" id="update_name" placeholder="請輸入新的姓名" /><button type="button" onclick="updateName()" style="margin-left: 3px">更新</button></div>
+                    <div id ="update_result" class="search_update"></div>
+                </form> 
+               
+                <form action="/message" id="message" class="form" method="POST">
+                    <div class="first">快來留言吧</div>
+                    <div class="ap">內容<input type="text" name="content" placeholder="請輸入留言" /><button style="margin-left: 3px">送出</button></div></div>
+                </form> 
+                <div class="content">
+                    {% for content in text_3 %}
+                        <div><strong>{{content[0]}}</strong>&nbsp;:&nbsp;{{content[1]}}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <script>
+            let logout = document.querySelector("#logout");
+            let backFirstPage = document.querySelector("#backFirstPage");
+            let content = document.querySelector(".content");
+            let message = document.querySelector("#message");
+            let search = document.querySelector("#search");
+            let update = document.querySelector("#update");
+            let path = window.location.pathname;
+            let member = "/member"
+            let error = "/error"
+            if(path == member){
+                logout.style = "display:block";
+                content.style = "display:block";
+            }
+            if(path == error){
+                backFirstPage.style = "display:block";
+                message.style = "display:none";
+                search.style = "display:none";
+                update.style = "display:none";
+            }
+            // 查詢會員姓名
+            function searchUserName(){
+                let userName = document.getElementById("search_username").value;
+                let url = "http://127.0.0.1:3000/api/member?username="+userName;
+                fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        try{
+                                name=data["data"]["name"];
+                                username=data["data"]["username"];
+                                document.getElementById("search_result").innerHTML = name+"("+username+")"
+                            }
+                            catch{
+                                document.getElementById("search_result").innerHTML = "無法查詢空帳號"
+                            }
+                    });
+            };
+            // 更新姓名
+            function updateName(){
+                let newName = document.getElementById("update_name").value;
+                fetch("http://127.0.0.1:3000/api/member",{
+                    method:"PATCH",
+                    body: JSON.stringify({
+                        "name":newName
+                        }),
+                    credentials: "include",
+                    cache:"no-cache",
+                    headers: new Headers({
+                        "Content-Type":"application/json; charset=UTF-8",
+                        }),
+                    })
+                    .then(res =>
+                        res.json()
+                    )
+                    .then(result =>{                                                        //result = {"ok":true} / {"error":true}
+                        if (result["ok"] == true){
+                            document.getElementById("update_result").innerHTML= "更新成功"
+                        }
+                        else if (result["error"] == true){
+                            document.getElementById("update_result").innerHTML= "更新失敗"
+                        } 
+                    })
+            }
+  
+        </script>
+    </body>
+</html>
